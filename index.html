@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Form</title>
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+</head>
+
+<body>
+  <h2>Contact Information</h2>
+
+  <form id="contactForm">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+
+    <label for="address">Address:</label>
+    <textarea id="address" name="address" rows="4" required></textarea><br>
+
+    <label for="city">City:</label>
+    <input type="text" id="city" name="city" required><br>
+
+    <label for="state">State:</label>
+    <input type="text" id="state" name="state" required><br>
+
+    <label for="pincode">Pin Code:</label>
+    <input type="text" id="pincode" name="pincode" required><br>
+
+    <input type="button" value="Send Email" onclick="sendEmail()">
+  </form>
+
+  <script>
+    emailjs.init("puspanahi5@gmail.com"); // Replace with your Email.js user ID
+
+    function sendEmail() {
+      var form = document.getElementById("contactForm");
+
+      emailjs.sendForm("service_lejdthp", "template_xpjzial", form)
+        .then(function (response) {
+          console.log("Email sent successfully", response);
+          // Redirect to the thank you page after a successful submission
+          window.location.href = 'thank_you.html';
+        }, function (error) {
+          console.log("Error sending email", error);
+          // Handle error, e.g., display an error message
+        });
+    }
+  </script>
+
+</body>
+
+</html>
